@@ -99,7 +99,7 @@ data.add_argument('--download-dataset', action='store_true',
 data.add_argument('--dataset-root', type=str, default='./data',
                   help='root directory for datasets')
 data.add_argument('--dataset-train', nargs='+', default=[DatasetType.Div2KBicubic],
-                  type=DatasetType, choices=[DatasetType.Div2KBicubic, DatasetType.Div2KUnknown],
+                  type=DatasetType, choices=[DatasetType.Div2KBicubic, DatasetType.Div2KUnknown, DatasetType.ICDAR2015],
                   help='Training dataset')
 data.add_argument('--dataset-val', nargs='+', default=[DatasetType.Div2KBicubic],
                   type=DatasetType, choices=list(DatasetType),

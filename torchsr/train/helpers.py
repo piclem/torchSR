@@ -34,6 +34,8 @@ def _name_to_dataset(name, split, transform):
         return B100(**kwargs)
     if name == DatasetType.Urban100:
         return Urban100(**kwargs)
+    if name == DatasetType.ICDAR2015:
+        return ICDAR2015(**kwargs)
     raise ValueError("Unknown dataset")
 
 

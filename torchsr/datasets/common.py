@@ -14,6 +14,10 @@ def pil_loader(path: str) -> Image.Image:
         img = Image.open(f)
         return img.convert('RGB')
 
+def torch_loader(path: str) -> torch.Tensor:
+    return torch.load(path)
+
+
 
 class Folder(torch.utils.data.Dataset):
     def __init__(
@@ -71,7 +75,7 @@ class Folder(torch.utils.data.Dataset):
 class FolderByDir(Folder):
     urls = {}
     track_dirs = {}
-    extensions = ( '.bmp', '.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp' )
+    extensions = ( '.bmp', '.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp', ".pgm")
     already_downloaded_urls = []
 
     def __init__(
@@ -170,5 +174,3 @@ class FolderByDir(Folder):
                 continue
             torchvision.datasets.utils.download_and_extract_archive(url, self.root, filename=filename, md5=md5sum)
             self.already_downloaded_urls.append((self.root, url))
-
-

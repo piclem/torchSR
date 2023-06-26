@@ -51,6 +51,7 @@ class DatasetType(CEnum):
     Set14 = 'set14'
     B100 = 'b100'
     Urban100 = 'urban100'
+    ICDAR2015 = 'ICDAR2015'
 
 
 class DataAugmentationType(CEnum):

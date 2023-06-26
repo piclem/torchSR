@@ -172,7 +172,7 @@ class CARNBlock(nn.Module):
         
 
 class CARN(nn.Module):
-    def __init__(self, scale, pretrained=False, map_location=None):
+    def __init__(self, scale, n_colors = 3, pretrained=False, map_location=None):
         super(CARN, self).__init__()
         
         multi_scale = True
@@ -182,7 +182,7 @@ class CARN(nn.Module):
         self.sub_mean = MeanShift((0.4488, 0.4371, 0.4040), sub=True)
         self.add_mean = MeanShift((0.4488, 0.4371, 0.4040), sub=False)
         
-        self.entry = nn.Conv2d(3, 64, 3, 1, 1)
+        self.entry = nn.Conv2d(n_colors, 64, 3, 1, 1)
 
         self.b1 = CARNBlock(64, 64)
         self.b2 = CARNBlock(64, 64)
@@ -194,7 +194,7 @@ class CARN(nn.Module):
         self.upsample = UpsampleBlock(64, scale=scale, 
                                       multi_scale=multi_scale,
                                       group=group)
-        self.exit = nn.Conv2d(64, 3, 3, 1, 1)
+        self.exit = nn.Conv2d(64, n_colors, 3, 1, 1)
 
         if pretrained:
             self.load_pretrained(map_location=map_location)
@@ -269,7 +269,7 @@ class CARNMBlock(nn.Module):
         
 
 class CARNM(nn.Module):
-    def __init__(self, scale, pretrained=False, map_location=None):
+    def __init__(self, scale, n_colors = 3, pretrained=False, map_location=None):
         super(CARNM, self).__init__()
         
         multi_scale = True
@@ -279,7 +279,7 @@ class CARNM(nn.Module):
         self.sub_mean = MeanShift((0.4488, 0.4371, 0.4040), sub=True)
         self.add_mean = MeanShift((0.4488, 0.4371, 0.4040), sub=False)
 
-        self.entry = nn.Conv2d(3, 64, 3, 1, 1)
+        self.entry = nn.Conv2d(n_colors, 64, 3, 1, 1)
 
         self.b1 = CARNMBlock(64, 64, group=group)
         self.b2 = CARNMBlock(64, 64, group=group)
@@ -291,7 +291,7 @@ class CARNM(nn.Module):
         self.upsample = UpsampleBlock(64, scale=scale, 
                                       multi_scale=multi_scale,
                                       group=group)
-        self.exit = nn.Conv2d(64, 3, 3, 1, 1)
+        self.exit = nn.Conv2d(64, n_colors, 3, 1, 1)
 
         if pretrained:
             self.load_pretrained(map_location=map_location)

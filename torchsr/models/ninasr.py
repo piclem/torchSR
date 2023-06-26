@@ -82,7 +82,7 @@ class Rescale(nn.Module):
 
 
 class NinaSR(nn.Module):
-    def __init__(self, n_resblocks, n_feats, scale, pretrained=False, map_location=None, expansion=2.0):
+    def __init__(self, n_resblocks, n_feats, scale, n_colors = 3, pretrained=False, map_location=None, expansion=2.0):
         super(NinaSR, self).__init__()
         self.scale = scale
 
@@ -92,7 +92,6 @@ class NinaSR(nn.Module):
         else:
             self.url = None
 
-        n_colors = 3
         self.head = NinaSR.make_head(n_colors, n_feats)
         self.body = NinaSR.make_body(n_resblocks, n_feats, expansion)
         self.tail = NinaSR.make_tail(n_colors, n_feats, scale)

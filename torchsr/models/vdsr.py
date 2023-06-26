@@ -31,12 +31,11 @@ class MeanShift(nn.Conv2d):
 
 
 class VDSR(nn.Module):
-    def __init__(self, n_resblocks, n_feats, scale, pretrained, map_location=None):
+    def __init__(self, n_resblocks, n_feats, scale, pretrained, n_colors = 3, map_location=None):
         super(VDSR, self).__init__()
         self.scale = scale
 
         kernel_size = 3 
-        n_colors = 3
         rgb_range = 1
         conv=default_conv
 

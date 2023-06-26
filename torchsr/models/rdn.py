@@ -48,7 +48,7 @@ class RDB(nn.Module):
 
 
 class RDN(nn.Module):
-    def __init__(self, scale, G0, D, C, G, pretrained=False, map_location=None):
+    def __init__(self, scale, G0, D, C, G, n_colors = 3pretrained=False, map_location=None):
         super(RDN, self).__init__()
         self.scale = scale
 
@@ -60,7 +60,6 @@ class RDN(nn.Module):
 
         r = scale
         kSize = 3
-        n_colors = 3
         self.D = D
 
         # Shallow feature extraction net
